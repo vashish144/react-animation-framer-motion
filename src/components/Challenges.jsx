@@ -42,17 +42,17 @@ export default function Challenges() {
       >
         <AnimatePresence mode='wait'>
           {displayedChallenges.length > 0 && (
-            <motion.ol key='list' className="challenge-items" exit={{ y: -30, opacity: 0 }}>
-              {displayedChallenges.map((challenge) => (
-                <AnimatePresence>
+            <motion.ol key='list' className="challenge-items" exit={{ y: -30, opacity: 0 }} initial={{ opacity: 0, y: -20 }} animate={{ opacity: 1, y: 0 }} >
+              <AnimatePresence>
+                {displayedChallenges.map((challenge) => (
                   <ChallengeItem
                     key={challenge.id}
                     challenge={challenge}
                     onViewDetails={() => handleViewDetails(challenge.id)}
                     isExpanded={expanded === challenge.id}
                   />
-                </AnimatePresence>
-              ))}
+                ))}
+              </AnimatePresence>
             </motion.ol>
           )}
           {displayedChallenges.length === 0 && <motion.p key="fallback" initial={{ opacity: 0, y: -20 }} animate={{ opacity: 1, y: 0 }} exit={{ opacity: 0, y: -20 }}>No challenges found.</motion.p>}
